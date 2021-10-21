@@ -11,12 +11,24 @@ public class Nav : MonoBehaviour
     public float speed;
     private float WPRadius = 1;
     public GameObject output;
-    int count = 0;
+    public int count1 = 0;
+    OverlapWFC CallDraw;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        CallDraw = GameObject.FindGameObjectWithTag("tagOutput").GetComponent<OverlapWFC>();
+        //Change the above from gameobject to transform? 
+        //(May eventually have to to get children for array.
+        //Could we use tags to get the children instead?
+
+        //CallDraw.Generate();
+        //CallDraw.Run();
+        //CallDraw on start?
+        //We can just set it to incremental.
+
+        //To initially populate array, do we do it in start?
+
     }
 
     // Update is called once per frame
@@ -28,12 +40,26 @@ public class Nav : MonoBehaviour
 
         if (Vector3.Distance(waypoints[current].transform.position, transform.position) < WPRadius)
         {
+
             current++;
+
             if (current >= waypoints.Length)
             {
                 current = 0;
+                count1++;
+                //CallDraw.Generate();
+                //CallDraw.Run(); <--------- this works (only goes through array once)
+
+                if (count1 == 2) //Calls generate and run after it goes through array twice.
+                {
+                    CallDraw.Generate();
+                    CallDraw.Run();
+                    count1 = 0;
+                    //Repopulate array probably goes here.
+                }
             }
         }
+
         transform.position = Vector3.MoveTowards(transform.position, waypoints[current].transform.position, Time.deltaTime * speed);
 
     }
@@ -47,5 +73,3 @@ public class Nav : MonoBehaviour
 //Should we use getchild like in OverlapWFC line 91?
 
 // Numbers 1 and 2 are tied together. 
-
-//So my issue right now is that I want to read the children of...
