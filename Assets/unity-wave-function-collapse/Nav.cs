@@ -6,7 +6,7 @@ public class Nav : MonoBehaviour
 {
 
     public GameObject[] waypoints;
-    int current = 0;
+    int current;
     public float rotSpeed;
     public float speed;
     private float WPRadius = 1;
@@ -47,15 +47,13 @@ public class Nav : MonoBehaviour
             {
                 current = 0;
                 count1++;
-                //CallDraw.Generate();
-                //CallDraw.Run(); <--------- this works (only goes through array once)
 
                 if (count1 == 2) //Calls generate and run after it goes through array twice.
                 {
                     CallDraw.Generate();
                     CallDraw.Run();
                     count1 = 0;
-                    //Repopulate array probably goes here.
+                    //Repopulate array probably goes here. Do we randonly repopulate the array?
                 }
             }
         }
