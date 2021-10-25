@@ -18,6 +18,8 @@ public class Ran_Nav : MonoBehaviour
 
     void Start()
     {
+        //waypoints = Transform.FindGameObjectsWithTag("tagParentArray"); //FindGameObjs... not in transform. It's in GameObject.
+        //waypoints = Transform.GetComponentsInChildren(???);
         CallDraw = GameObject.FindGameObjectWithTag("tagOutput").GetComponent<OverlapWFC>(); //References output
         targetPoint = waypoints[0].position; //Set targetpoint to element 0.
     }
