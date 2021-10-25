@@ -20,14 +20,13 @@ public class New_Nav : MonoBehaviour
 
     void Start() //This is all out of order.
     {
-        waypoints = GameObject.FindGameObjectsWithTag("tagMakeArray");
-        //waypoints = GameObject.GetComponentsInChildren(typeof(GameObject)); //An object reference is required.
 
         CallDraw = GameObject.FindGameObjectWithTag("tagOutput").GetComponent<OverlapWFC>(); //References output
-
+        AddTagRecursively(output, "tagMakeArray"); //It doesn't do this on start. Must investigate why.
+        waypoints = GameObject.FindGameObjectsWithTag("tagMakeArray");
+        //waypoints = GameObject.GetComponentsInChildren(typeof(GameObject)); //An object reference is required.
         targetPoint = waypoints[0].transform.position; //Set targetpoint to element 0. This is what's causing it to start moving immediately, even with an empty array.
 
-        AddTagRecursively(output, "tagMakeArray"); //It doesn't do this on start. Must investigate why.
     }
 
 
